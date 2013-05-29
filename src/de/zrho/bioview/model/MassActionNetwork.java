@@ -2,7 +2,7 @@ package de.zrho.bioview.model;
 
 import java.util.List;
 
-import de.zrho.bioview.util.Matrix;
+import de.zrho.bioview.math.Matrix;
 
 public class MassActionNetwork<S> extends Network<S, Double> {
 

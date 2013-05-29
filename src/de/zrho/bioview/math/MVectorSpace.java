@@ -1,4 +1,4 @@
-package de.zrho.bioview.util;
+package de.zrho.bioview.math;
 
 public interface MVectorSpace<S, V> extends VectorSpace<S, V> {
 

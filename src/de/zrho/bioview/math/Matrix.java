@@ -1,4 +1,4 @@
-package de.zrho.bioview.util;
+package de.zrho.bioview.math;
 
 public class Matrix implements MVectorSpace<Double, Matrix> {
 
@@ -10,6 +10,15 @@ public class Matrix implements MVectorSpace<Double, Matrix> {
 		this.width = width;
 		this.height = height;
 		this.data = new double[height][width];
+	}
+	
+	public Matrix(double[][] data) {
+		this(data.length, data.length == 0 ? 0 : data[0].length);
+		for(int i = 0; i < height; i++) {
+			for(int j = 0; j < width; j++) {
+				this.data[i][j] = data[i][j];
+			}
+		}
 	}
 	
 	public int getHeight() {
@@ -161,4 +170,17 @@ public class Matrix implements MVectorSpace<Double, Matrix> {
 		return hash;
 	}
 	
+	/**
+	 * Creates an identity matrix.
+	 * 
+	 * @param size the width and height of the matrix
+	 * @return the identity n x n matrix.
+	 */
+	public static Matrix identity(int size) {
+		Matrix mat = new Matrix(size, size);
+		for(int i = 0; i < size; i++) {
+			mat.set(i, i, 1);
+		}
+		return mat;
+	}
 }

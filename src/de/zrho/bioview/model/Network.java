@@ -3,7 +3,7 @@ package de.zrho.bioview.model;
 import java.util.Collections;
 import java.util.List;
 
-import de.zrho.bioview.util.Matrix;
+import de.zrho.bioview.math.Matrix;
 
 /**
  * Chemical reaction network N = (S, C, R), with a species set S, a complex set C and a reaction set R.

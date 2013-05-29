@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import de.zrho.bioview.util.VectorSpace;
+import de.zrho.bioview.math.VectorSpace;
 
 public class Complex<S> implements VectorSpace<Integer, Complex<S>> {
 

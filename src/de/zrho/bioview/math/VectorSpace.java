@@ -1,4 +1,4 @@
-package de.zrho.bioview.util;
+package de.zrho.bioview.math;
 
 public interface VectorSpace<S, V> {
 
