@@ -39,6 +39,9 @@ public class SBMLImport {
 			Complex<String> products = importComplex(sourceReaction.getListOfProducts(), complexes);
 
 			// TODO Find rates
+			if(sourceReaction.isReversible()) {
+				reactions.add(new Reaction<String, Double>(products, reactants, 1.0));
+			}
 			reactions.add(new Reaction<String, Double>(reactants, products, 1.0));
 		}
 		
@@ -46,10 +49,10 @@ public class SBMLImport {
 	}
 	
 	private static Complex<String> importComplex(ListOf<SpeciesReference> source, IndexedSet<Complex<String>> target) {
-		Map<String, Integer> complex = new HashMap<String, Integer>();
+		Map<String, Double> complex = new HashMap<>();
 		
 		for (SpeciesReference ref : source) {
-			complex.put(ref.getSpecies(), new Double(ref.getStoichiometry()).intValue());
+			complex.put(ref.getSpecies(), ref.getStoichiometry());
 		}
 		
 		Complex<String> c = new Complex<String>(complex);

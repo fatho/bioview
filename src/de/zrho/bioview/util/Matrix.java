@@ -89,7 +89,7 @@ public class Matrix implements MVectorSpace<Double, Matrix> {
 	public void multScalarHere(double s) {
 		for (int i = 0; i < height; ++i) {
 			for (int j = 0; j < width; ++j) {
-				data[i][j] = 0;
+				data[i][j] = s * data[i][j];
 			}
 		}
 	}
@@ -111,14 +111,21 @@ public class Matrix implements MVectorSpace<Double, Matrix> {
 		// Calculate dimensions of output
 		int maxLength = 0;
 		
+		int maxWhole = 0;
+		int maxFrac  = 0;
+		
 		for (int i = 0; i < height; ++i) {
 			for (int j = 0; j < width; ++j) {
-				int length = String.format("%f", data[i][j]).length();
-				maxLength = Math.max(maxLength, length);
+				int whole = String.format("%.0f", data[i][j]).length();
+				int fractional = 0;
+				if(data[i][j] % 1 != 0)
+					fractional = String.format("%s", data[i][j] % 1).length() - 1;
+				maxWhole = Math.max(maxWhole, whole);
+				maxFrac = Math.max(maxFrac, fractional);
 			}
 		}
 		
-		String format = String.format("%%%df", maxLength);
+		String format = String.format("%%%d.%df", maxWhole, Math.max(maxFrac - 1, 0));
 		
 		int outWidth = 3 + (maxLength + 1) * width;
 		int outHeight = height;

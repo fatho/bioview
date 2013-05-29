@@ -10,24 +10,24 @@ import de.zrho.bioview.util.VectorSpace;
 
 public class Complex<S> implements VectorSpace<Integer, Complex<S>> {
 
-	private Map<S, Integer> coefficients;
+	private Map<S, Double> coefficients;
 
-	public Complex(Map<S, Integer> coefficients) {
-		this.coefficients = new HashMap<S, Integer>();
+	public Complex(Map<S, Double> coefficients) {
+		this.coefficients = new HashMap<S, Double>();
 
 		// Filter negative coefficients
-		for (Entry<S, Integer> e : coefficients.entrySet()) {
+		for (Entry<S, Double> e : coefficients.entrySet()) {
 			if (e.getValue() > 0)
 				this.coefficients.put(e.getKey(), e.getValue());
 		}
 	}
 
-	public Map<S, Integer> getCoefficients() {
+	public Map<S, Double> getCoefficients() {
 		return Collections.unmodifiableMap(coefficients);
 	}
 
-	public int getCoefficient(S species) {
-		Integer coeff = coefficients.get(species);
+	public double getCoefficient(S species) {
+		Double coeff = coefficients.get(species);
 		return (coeff == null) ? 0 : coeff;
 	}
 
@@ -37,12 +37,11 @@ public class Complex<S> implements VectorSpace<Integer, Complex<S>> {
 
 	@Override
 	public Complex<S> add(Complex<S> that) {
-		Map<S, Integer> result = new HashMap<S, Integer>(coefficients);
+		Map<S, Double> result = new HashMap<>(coefficients);
 
-		for (Entry<S, Integer> entry : that.getCoefficients().entrySet()) {
+		for (Entry<S, Double> entry : that.getCoefficients().entrySet()) {
 			S species = entry.getKey();
-			int before = (result.containsKey(species)) ? result.get(species)
-					: 0;
+			double before = result.containsKey(species) ? result.get(species): 0;
 			result.put(species, before + entry.getValue());
 		}
 
@@ -51,9 +50,9 @@ public class Complex<S> implements VectorSpace<Integer, Complex<S>> {
 
 	@Override
 	public Complex<S> multScalar(Integer s) {
-		Map<S, Integer> result = new HashMap<S, Integer>(coefficients);
+		Map<S, Double> result = new HashMap<>(coefficients);
 
-		for (Entry<S, Integer> entry : coefficients.entrySet()) {
+		for (Entry<S, Double> entry : coefficients.entrySet()) {
 			result.put(entry.getKey(), result.get(entry.getKey()) * s);
 		}
 
@@ -65,7 +64,7 @@ public class Complex<S> implements VectorSpace<Integer, Complex<S>> {
 		StringBuilder b = new StringBuilder();
 		int i = 0;
 
-		for (Entry<S, Integer> e : coefficients.entrySet()) {
+		for (Entry<S, Double> e : coefficients.entrySet()) {
 			b.append(e.getValue());
 			b.append(e.getKey());
 
