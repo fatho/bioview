@@ -8,7 +8,7 @@ import de.zrho.bioview.math.Matrix;
 /**
  * Chemical reaction network N = (S, C, R), with a species set S, a complex set C and a reaction set R.
  * 
- * @author Lukas Heidemann
+ * @author Lukas Heidemann and Fabian Thorand
  * @param <S> Type of the species.
  * @see http://reaction-networks.net/wiki/Chemical_reaction_network
  */
@@ -53,9 +53,9 @@ public class Network<S, R> {
 	}
 
 	/**
-	 * Product coefficient matrix y'(i, j) in M(|S| x |R|).
+	 * Product coefficient matrix <tt>y'(i, j)</tt> in <tt>M(|S| x |R|)</tt>.
 	 * 
-	 * y'(i, j) >= 0 is the coefficient of species S_i in the product complex of R_j.
+	 * <tt>y'(i, j) >= 0</tt> is the coefficient of species <tt>S_i</tt> in the product complex of <tt>R_j</tt>.
 	 * 
 	 * @see http://reaction-networks.net/wiki/Stoichiometry
 	 */
@@ -64,9 +64,9 @@ public class Network<S, R> {
 	}
 
 	/**
-	 * Reactant coefficient matrix y(i, j) in M(|S| x |R|).
+	 * Reactant coefficient matrix <tt>y(i, j)</tt> in <tt>M(|S| x |R|)</tt>.
 	 * 
-	 * y(i, j) >= 0 is the coefficient of species S_i in the reactant complex of R_j.
+	 * <tt>y(i, j) >= 0</tt> is the coefficient of species <tt>S_i</tt> in the reactant complex of <tt>R_j</tt>.
 	 * 
 	 * @see http://reaction-networks.net/wiki/Stoichiometry
 	 */
@@ -75,7 +75,7 @@ public class Network<S, R> {
 	}
 
 	/**
-	 * Stoichiometic coefficient matrix s(i, j) = y'(i, j) - y(i, j) in M(|S| x |R|).
+	 * Stoichiometic coefficient matrix <tt>s(i, j) = y'(i, j) - y(i, j)</tt> in <tt>M(|S| x |R|)</tt>.
 	 * 
 	 * @see http://reaction-networks.net/wiki/Stoichiometry
 	 */

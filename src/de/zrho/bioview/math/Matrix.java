@@ -61,9 +61,7 @@ public class Matrix implements MVectorSpace<Double, Matrix> {
 	}
 	
 	public Matrix clone() {
-		Matrix result = new Matrix(height, width);
-		System.arraycopy(data, 0, result.getData(), 0, data.length);
-		return result;
+		return new Matrix(getData());
 	}
 	
 	@Override

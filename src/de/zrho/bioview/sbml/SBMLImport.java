@@ -44,10 +44,10 @@ public class SBMLImport {
 			Complex<String> products = importComplex(sourceReaction.getListOfProducts(), complexes);
 
 			// TODO Find rates
+			reactions.add(new Reaction<String, Double>(reactants, products, 1.0));
 			if(sourceReaction.isReversible()) {
 				reactions.add(new Reaction<String, Double>(products, reactants, 1.0));
 			}
-			reactions.add(new Reaction<String, Double>(reactants, products, 1.0));
 		}
 		
 		return factory.createNetwork(species, complexes, reactions);
