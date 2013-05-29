@@ -15,7 +15,7 @@ public class Test {
 		Network<String, Double> network;
 		
 		try {
-			File inp = new File("Z.A/various_models/MBO.xml");
+			File inp = new File("sampledata/MBO.xml");
 			network = SBMLImport.importNetwork(inp);
 		} catch (Exception ex) {
 			ex.printStackTrace();

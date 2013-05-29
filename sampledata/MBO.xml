@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level1" level="1" version="2">
+<model name="MBO">
+<listOfUnitDefinitions>
+<unitDefinition name="substance">
+<listOfUnits>
+<unit kind="mole"/>
+</listOfUnits>
+</unitDefinition>
+<unitDefinition name="volume">
+<listOfUnits>
+<unit kind="litre"/>
+</listOfUnits>
+</unitDefinition>
+<unitDefinition name="area">
+<listOfUnits>
+<unit kind="metre" exponent="2"/>
+</listOfUnits>
+</unitDefinition>
+<unitDefinition name="length">
+<listOfUnits>
+<unit kind="metre"/>
+</listOfUnits>
+</unitDefinition>
+<unitDefinition name="time">
+<listOfUnits>
+<unit kind="second"/>
+</listOfUnits>
+</unitDefinition>
+</listOfUnitDefinitions>
+<listOfCompartments>
+<compartment name="default" volume="1" units="volume"/>
+</listOfCompartments>
+<listOfSpecies>
+<species name="s1" compartment="default" initialAmount="0"/>
+<species name="s2" compartment="default" initialAmount="0"/>
+<species name="s3" compartment="default" initialAmount="0" boundaryCondition="true"/>
+<species name="s4" compartment="default" initialAmount="0"/>
+<species name="s5" compartment="default" initialAmount="0"/>
+<species name="s6" compartment="default" initialAmount="0" boundaryCondition="true"/>
+<species name="s7" compartment="default" initialAmount="0" boundaryCondition="true"/>
+<species name="s8" compartment="default" initialAmount="0"/>
+<species name="s9" compartment="default" initialAmount="0"/>
+<species name="s10" compartment="default" initialAmount="0" boundaryCondition="true"/>
+<species name="s11" compartment="default" initialAmount="0" boundaryCondition="true"/>
+</listOfSpecies>
+<listOfReactions>
+<reaction name="re1" reversible="false">
+<listOfReactants>
+<speciesReference species="s2"/>
+<speciesReference species="s3"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="s1"/>
+<speciesReference species="s4"/>
+</listOfProducts>
+</reaction>
+<reaction name="re2" reversible="false">
+<listOfReactants>
+<speciesReference species="s1"/>
+<speciesReference species="s3"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="s5"/>
+<speciesReference species="s4"/>
+<speciesReference species="s6"/>
+</listOfProducts>
+</reaction>
+<reaction name="re3" reversible="false">
+<listOfReactants>
+<speciesReference species="s4"/>
+<speciesReference species="s6"/>
+<speciesReference species="s2"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="s1"/>
+<speciesReference species="s7"/>
+</listOfProducts>
+</reaction>
+<reaction name="re4" reversible="false">
+<listOfReactants>
+<speciesReference species="s1" stoichiometry="2"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="s5"/>
+<speciesReference species="s2"/>
+<speciesReference species="s6"/>
+</listOfProducts>
+</reaction>
+<reaction name="re5" reversible="false">
+<listOfReactants>
+<speciesReference species="s3"/>
+<speciesReference species="s8"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="s4"/>
+<speciesReference species="s9"/>
+</listOfProducts>
+</reaction>
+<reaction name="re6" reversible="false">
+<listOfReactants>
+<speciesReference species="s4"/>
+<speciesReference species="s8"/>
+<speciesReference species="s6"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="s9"/>
+<speciesReference species="s7"/>
+</listOfProducts>
+</reaction>
+<reaction name="re7" reversible="false">
+<listOfReactants>
+<speciesReference species="s3"/>
+<speciesReference species="s8"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="s11"/>
+<speciesReference species="s4"/>
+<speciesReference species="s6"/>
+</listOfProducts>
+</reaction>
+<reaction name="re8" reversible="false">
+<listOfReactants>
+<speciesReference species="s9"/>
+<speciesReference species="s4"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="s11"/>
+<speciesReference species="s7"/>
+</listOfProducts>
+</reaction>
+<reaction name="re9" reversible="false">
+<listOfReactants>
+<speciesReference species="s10"/>
+<speciesReference species="s3" stoichiometry="2"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="s4" stoichiometry="2"/>
+<speciesReference species="s6" stoichiometry="2"/>
+</listOfProducts>
+</reaction>
+<reaction name="re10" reversible="false">
+<listOfReactants>
+<speciesReference species="s1"/>
+<speciesReference species="s8"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="s2"/>
+<speciesReference species="s9"/>
+</listOfProducts>
+</reaction>
+<reaction name="re11" reversible="false">
+<listOfReactants>
+<speciesReference species="s3"/>
+<speciesReference species="s1"/>
+<speciesReference species="s10"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="s2"/>
+<speciesReference species="s4"/>
+<speciesReference species="s6" stoichiometry="2"/>
+</listOfProducts>
+</reaction>
+<reaction name="re12" reversible="false">
+<listOfReactants>
+<speciesReference species="s6"/>
+<speciesReference species="s4" stoichiometry="2"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="s3"/>
+<speciesReference species="s7"/>
+</listOfProducts>
+</reaction>
+<reaction name="re13" reversible="false">
+<listOfReactants>
+<speciesReference species="s1"/>
+<speciesReference species="s4"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="s5"/>
+<speciesReference species="s7"/>
+</listOfProducts>
+</reaction>
+<reaction name="re14" reversible="false">
+<listOfReactants>
+<speciesReference species="s5"/>
+<speciesReference species="s9"/>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="s1"/>
+<speciesReference species="s10"/>
+<speciesReference species="s6"/>
+</listOfProducts>
+</reaction>
+<reaction name="re15" reversible="false">
+
+<listOfProducts>
+<speciesReference species="s8"/>
+</listOfProducts>
+</reaction>
+</listOfReactions>
+</model>
+</sbml>

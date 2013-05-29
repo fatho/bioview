@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" xmlns:sbml="http://www.sbml.org/sbml/level2" version="1" level="2" xmlns:math="http://www.w3.org/1998/Math/MathML"
+xmlns:html="http://www.w3.org/1999/xhtml">
+<model id="unknown" name="unknown" >
+<notes>unknown</notes><notes></notes><listOfCompartments>
+<compartment id="System" spatialDimensions="3" name="System" />
+</listOfCompartments>
+<listOfSpecies>
+<species id="AcCoA" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="ADP" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="Ala" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="Alaex" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="AMP" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="Asp" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="Aspex" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="ATP" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="Cit" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="CO2" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="CoA" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="FAD" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="FADH2" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="Fum" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="Glu" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="Gluex" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="Gly" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="IsoCit" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="Mal" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="NAD" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="NADH" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="NADP" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="NADPH" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="NH3" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="OAA" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="OG" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="PEP" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="PG" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="Pyr" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="Succ" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="SucCoA" compartment="System" initialAmount="10.0" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+<species id="Sucex" compartment="System" initialAmount="10.0" boundaryCondition="true" name="" >
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50;true</annotation></species>
+</listOfSpecies>
+<listOfReactions>
+<reaction id="AceEF" reversible="false" name="" >
+<listOfReactants>
+<speciesReference species="CoA" >
+</speciesReference>
+<speciesReference species="NAD" >
+</speciesReference>
+<speciesReference species="Pyr" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="AcCoA" >
+</speciesReference>
+<speciesReference species="CO2" >
+</speciesReference>
+<speciesReference species="NADH" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="Acn" name="" >
+<listOfReactants>
+<speciesReference species="Cit" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="IsoCit" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="AlaCon" reversible="false" name="" >
+<listOfReactants>
+<speciesReference species="Ala" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="Alaex" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="AspA" reversible="false" name="" >
+<listOfReactants>
+<speciesReference species="Asp" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="Fum" >
+</speciesReference>
+<speciesReference species="NH3" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="AspC" name="" >
+<listOfReactants>
+<speciesReference species="Glu" >
+</speciesReference>
+<speciesReference species="OAA" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="Asp" >
+</speciesReference>
+<speciesReference species="OG" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="AspCon" reversible="false" name="" >
+<listOfReactants>
+<speciesReference species="Asp" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="Aspex" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="Eno" name="" >
+<listOfReactants>
+<speciesReference species="PG" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="PEP" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="Fum" name="" >
+<listOfReactants>
+<speciesReference species="Fum" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="Mal" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="Gdh" name="" >
+<listOfReactants>
+<speciesReference species="NADPH" >
+</speciesReference>
+<speciesReference species="NH3" >
+</speciesReference>
+<speciesReference species="OG" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="Glu" >
+</speciesReference>
+<speciesReference species="NADP" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="GltA" reversible="false" name="" >
+<listOfReactants>
+<speciesReference species="AcCoA" >
+</speciesReference>
+<speciesReference species="OAA" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="Cit" >
+</speciesReference>
+<speciesReference species="CoA" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="GluCon" reversible="false" name="" >
+<listOfReactants>
+<speciesReference species="Glu" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="Gluex" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="Icd" reversible="false" name="" >
+<listOfReactants>
+<speciesReference species="IsoCit" >
+</speciesReference>
+<speciesReference species="NADP" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="CO2" >
+</speciesReference>
+<speciesReference species="NADPH" >
+</speciesReference>
+<speciesReference species="OG" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="Icl" reversible="false" name="" >
+<listOfReactants>
+<speciesReference species="IsoCit" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="Gly" >
+</speciesReference>
+<speciesReference species="Succ" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="IlvEAvtA" name="" >
+<listOfReactants>
+<speciesReference species="Glu" >
+</speciesReference>
+<speciesReference species="Pyr" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="Ala" >
+</speciesReference>
+<speciesReference species="OG" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="Mas" reversible="false" name="" >
+<listOfReactants>
+<speciesReference species="AcCoA" >
+</speciesReference>
+<speciesReference species="Gly" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="CoA" >
+</speciesReference>
+<speciesReference species="Mal" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="Mdh" name="" >
+<listOfReactants>
+<speciesReference species="Mal" >
+</speciesReference>
+<speciesReference species="NAD" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="NADH" >
+</speciesReference>
+<speciesReference species="OAA" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="Pck" reversible="false" name="" >
+<listOfReactants>
+<speciesReference species="ATP" >
+</speciesReference>
+<speciesReference species="OAA" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="ADP" >
+</speciesReference>
+<speciesReference species="CO2" >
+</speciesReference>
+<speciesReference species="PEP" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="Ppc" reversible="false" name="" >
+<listOfReactants>
+<speciesReference species="CO2" >
+</speciesReference>
+<speciesReference species="PEP" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="OAA" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="Pps" reversible="false" name="" >
+<listOfReactants>
+<speciesReference species="ATP" >
+</speciesReference>
+<speciesReference species="Pyr" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="AMP" >
+</speciesReference>
+<speciesReference species="PEP" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="Pyk" reversible="false" name="" >
+<listOfReactants>
+<speciesReference species="ADP" >
+</speciesReference>
+<speciesReference species="PEP" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="ATP" >
+</speciesReference>
+<speciesReference species="Pyr" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="Sdh" name="" >
+<listOfReactants>
+<speciesReference species="FAD" >
+</speciesReference>
+<speciesReference species="Succ" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="FADH2" >
+</speciesReference>
+<speciesReference species="Fum" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="SucAB" reversible="false" name="" >
+<listOfReactants>
+<speciesReference species="CoA" >
+</speciesReference>
+<speciesReference species="NAD" >
+</speciesReference>
+<speciesReference species="OG" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="CO2" >
+</speciesReference>
+<speciesReference species="NADH" >
+</speciesReference>
+<speciesReference species="SucCoA" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="SucCD" name="" >
+<listOfReactants>
+<speciesReference species="ADP" >
+</speciesReference>
+<speciesReference species="SucCoA" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="ATP" >
+</speciesReference>
+<speciesReference species="CoA" >
+</speciesReference>
+<speciesReference species="Succ" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+<reaction id="SucCoACon" reversible="false" name="" >
+<listOfReactants>
+<speciesReference species="SucCoA" >
+</speciesReference>
+</listOfReactants>
+<listOfProducts>
+<speciesReference species="CoA" >
+</speciesReference>
+<speciesReference species="Sucex" >
+</speciesReference>
+</listOfProducts>
+<annotation xmlns:yana="http://www.uni-wuerzburg.de" >50;50</annotation></reaction>
+</listOfReactions>
+</model>
+</sbml>

@@ -17,6 +17,7 @@ import org.sbml.jsbml.SpeciesReference;
 import de.zrho.bioview.model.Complex;
 import de.zrho.bioview.model.Network;
 import de.zrho.bioview.model.Reaction;
+import de.zrho.collections.IndexedSet;
 
 public class SBMLImport {
 
@@ -26,43 +27,45 @@ public class SBMLImport {
 	
 	public static Network<String, Double> importNetwork(Model model) {
 		// Import the list of species
-		List<String> species = new ArrayList<String>(model.getListOfSpecies().size());
+		List<String> species = new IndexedSet<>(model.getListOfSpecies().size());
 		for (Species s : model.getListOfSpecies()) species.add(importSpecies(s));
 		
 		// Import the reactions and collect complexes on the run
-		List<Reaction<String, Double>> reactions = new ArrayList<Reaction<String, Double>>(model.getListOfReactions().size());
-		Set<Complex<String>> complexes = new HashSet<Complex<String>>();
+		List<Reaction<String, Double>> reactions = new IndexedSet<>(model.getListOfReactions().size());
+		IndexedSet<Complex<String>> complexes = new IndexedSet<>();
 		
 		for (org.sbml.jsbml.Reaction sourceReaction : model.getListOfReactions()) {
-			Complex<String> reactants = importComplex(sourceReaction.getListOfReactants());
-			Complex<String> products = importComplex(sourceReaction.getListOfProducts());
+			Complex<String> reactants = importComplex(sourceReaction.getListOfReactants(), complexes);
+			Complex<String> products = importComplex(sourceReaction.getListOfProducts(), complexes);
+
 			// TODO Find rates
-			complexes.add(reactants);
-			complexes.add(products);
 			reactions.add(new Reaction<String, Double>(reactants, products, 1.0));
 		}
 		
-		// Create network
-		List<Complex<String>> complexesList = new ArrayList<Complex<String>>(complexes.size());
-		complexesList.addAll(complexes);
-		
-		return new Network<String, Double>(species, complexesList, reactions);
+		return new Network<String, Double>(species, complexes, reactions);
 	}
 	
-	private static Complex<String> importComplex(ListOf<SpeciesReference> source) {
+	private static Complex<String> importComplex(ListOf<SpeciesReference> source, IndexedSet<Complex<String>> target) {
 		Map<String, Integer> complex = new HashMap<String, Integer>();
 		
 		for (SpeciesReference ref : source) {
 			complex.put(ref.getSpecies(), new Double(ref.getStoichiometry()).intValue());
 		}
 		
-		return new Complex<String>(complex);
+		Complex<String> c = new Complex<String>(complex);
+		int index = target.indexOf(c);
+		if(index >= 0) {
+			return target.get(index);
+		} else {
+			target.add(c);
+			return c;
+		}
+			
 	}
 	
 	private static String importSpecies(Species source) {
 		return source.getId();
 	}
 	
-	//public static Complex<String> importComplex()
 	
 }
