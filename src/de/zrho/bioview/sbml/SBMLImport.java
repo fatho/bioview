@@ -16,16 +16,21 @@ import org.sbml.jsbml.SpeciesReference;
 
 import de.zrho.bioview.model.Complex;
 import de.zrho.bioview.model.Network;
+import de.zrho.bioview.model.NetworkFactory;
 import de.zrho.bioview.model.Reaction;
 import de.zrho.collections.IndexedSet;
 
 public class SBMLImport {
 
 	public static Network<String, Double> importNetwork(File file) throws Exception {
-		return importNetwork(new SBMLReader().readSBML(file).getModel());
+		return importNetwork(file, new Network.Factory<String,Double>());
 	}
 	
-	public static Network<String, Double> importNetwork(Model model) {
+	public static Network<String, Double> importNetwork(File file, NetworkFactory<String,Double> factory) throws Exception {
+		return importNetwork(new SBMLReader().readSBML(file).getModel(), factory);
+	}
+
+	public static Network<String, Double> importNetwork(Model model, NetworkFactory<String,Double> factory) {
 		// Import the list of species
 		List<String> species = new IndexedSet<>(model.getListOfSpecies().size());
 		for (Species s : model.getListOfSpecies()) species.add(importSpecies(s));
@@ -45,7 +50,7 @@ public class SBMLImport {
 			reactions.add(new Reaction<String, Double>(reactants, products, 1.0));
 		}
 		
-		return new Network<String, Double>(species, complexes, reactions);
+		return factory.createNetwork(species, complexes, reactions);
 	}
 	
 	private static Complex<String> importComplex(ListOf<SpeciesReference> source, IndexedSet<Complex<String>> target) {

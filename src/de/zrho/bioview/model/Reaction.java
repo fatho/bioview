@@ -1,5 +1,14 @@
 package de.zrho.bioview.model;
 
+/**
+ * Class representing an reaction with a specific reaction rate of type R.
+ * <tt>x_1 * S_i_1 + ... + x_n * S_i_n --> y_1 * S_j_1 + ... + y_m * S_j_m</tt>
+ * 
+ * @author Lukas Heidemann and Fabian Thorand
+ *
+ * @param <S> species type
+ * @param <R> rate type
+ */
 public class Reaction<S, R> {
 
 	private Complex<S> product;

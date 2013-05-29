@@ -4,9 +4,19 @@ import java.util.List;
 
 import de.zrho.bioview.math.Matrix;
 
-public class MassActionNetwork<S> extends Network<S, Double> {
+public class MassActionNetwork<S, R extends Number> extends Network<S, R> {
 
-	public MassActionNetwork(List<S> species, List<Complex<S>> complexes, List<Reaction<S, Double>> reactions) {
+	public static class Factory<S, R extends Number> implements NetworkFactory<S, R> {
+
+		@Override
+		public MassActionNetwork<S,R> createNetwork(List<S> species,
+				List<Complex<S>> complexes, List<Reaction<S,R>> reactions) {
+			return new MassActionNetwork<S,R>(species, complexes, reactions);
+		}
+		
+	}
+	
+	public MassActionNetwork(List<S> species, List<Complex<S>> complexes, List<Reaction<S, R>> reactions) {
 		super(species, complexes, reactions);
 		deriveRates();
 		deriveKinetic();
@@ -40,11 +50,11 @@ public class MassActionNetwork<S> extends Network<S, Double> {
 	private void deriveRates() {
 		rates = new Matrix(getComplexes().size(), getComplexes().size());
 		
-		for (Reaction<S, Double> reaction : getReactions()) {
+		for (Reaction<S, R> reaction : getReactions()) {
 			int i = getComplexes().indexOf(reaction.getReactant());
 			int j = getComplexes().indexOf(reaction.getProduct());
 			
-			rates.set(i, j, reaction.getRate());
+			rates.set(i, j, reaction.getRate().doubleValue());
 		}
 	}
 	
