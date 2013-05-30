@@ -1,5 +1,7 @@
 package de.zrho.bioview.math;
 
+import java.util.Arrays;
+
 public class Matrix implements MVectorSpace<Double, Matrix> {
 
 	private int width;
@@ -65,7 +67,7 @@ public class Matrix implements MVectorSpace<Double, Matrix> {
 	}
 	
 	@Override
-	public void addHere(Matrix m) {
+	public Matrix addHere(Matrix m) {
 		if (m.getWidth() != width || m.getHeight() != height)
 			throw new IllegalArgumentException("Dimension mismatch adding matrices.");
 		
@@ -74,6 +76,7 @@ public class Matrix implements MVectorSpace<Double, Matrix> {
 				data[i][j] += m.getData()[i][j];
 			}
 		}
+		return this;
 	}
 	
 	@Override
@@ -89,28 +92,23 @@ public class Matrix implements MVectorSpace<Double, Matrix> {
 	}
 	
 	@Override
-	public void multScalarHere(Double s) {
-		multScalarHere((double) s);
+	public Matrix multScalarHere(Double s) {
+		return multScalarHere((double) s);
 	}
 	
-	public void multScalarHere(double s) {
+	public Matrix multScalarHere(double s) {
 		for (int i = 0; i < height; ++i) {
 			for (int j = 0; j < width; ++j) {
 				data[i][j] = s * data[i][j];
 			}
 		}
+		return this;
 	}
 	
 	public Matrix multScalar(double s) {
 		Matrix result = clone();
 		result.multScalar(s);
 		return result;
-	}
-	
-	@Override
-	public boolean equals(Object o) {
-		if (!(o instanceof Matrix)) return false;
-		return ((Matrix) o).getData().equals(data);
 	}
 	
 	@Override
@@ -132,7 +130,7 @@ public class Matrix implements MVectorSpace<Double, Matrix> {
 			}
 		}
 		
-		String format = String.format("%%%d.%df", maxWhole, Math.max(maxFrac - 1, 0));
+		String format = String.format("%%%d.%df", maxWhole + maxFrac, Math.max(maxFrac - 1, 0));
 		
 		int outWidth = 3 + (maxLength + 1) * width;
 		int outHeight = height;
@@ -157,15 +155,21 @@ public class Matrix implements MVectorSpace<Double, Matrix> {
 	
 	@Override
 	public int hashCode() {
-		int hash = 0;
-		
-		for (int i = 0; i < height; ++i) {
-			for (int j = 0; j < width; ++j) {
-				hash ^= new Double(data[i][j]).hashCode();
-			}
-		}
-		
-		return hash;
+		return Arrays.deepHashCode(data);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Matrix))
+			return false;
+		Matrix other = (Matrix) obj;
+		if (!Arrays.deepEquals(data, other.data))
+			return false;
+		return true;
 	}
 	
 	/**
