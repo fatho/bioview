@@ -2,35 +2,27 @@ package de.zrho.bioview.ui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.print.attribute.standard.JobMessageFromOperator;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JMenuBar;
-import java.awt.Window.Type;
-import javax.swing.JMenuItem;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+
+import javax.swing.JFrame;
 import javax.swing.JMenu;
-import java.awt.Component;
-import javax.swing.Box;
-import javax.swing.JOptionPane;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
-import java.awt.event.InputEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JSplitPane;
-import javax.swing.JToolBar;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JButton;
+import javax.swing.border.EmptyBorder;
 
 public class BioViewMainFrame extends JFrame {
 
+	private static final long serialVersionUID = -4548800584629649126L;
+	
 	private JPanel contentPane;
 	private JMenuBar menuBar;
 	private JMenu mnfile;

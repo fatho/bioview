@@ -4,26 +4,21 @@ import java.util.List;
 
 import de.zrho.bioview.math.Matrix;
 
-public class MassActionNetwork<S, R extends Number> extends Network<S, R> {
-
-	public static class Factory<S, R extends Number> implements NetworkFactory<S, R> {
-
-		@Override
-		public MassActionNetwork<S,R> createNetwork(List<S> species,
-				List<Complex<S>> complexes, List<Reaction<S,R>> reactions) {
-			return new MassActionNetwork<S,R>(species, complexes, reactions);
-		}
-		
-	}
+public class MassActionNetwork<S, R extends Number> {
 	
-	public MassActionNetwork(List<S> species, List<Complex<S>> complexes, List<Reaction<S, R>> reactions) {
-		super(species, complexes, reactions);
+	public MassActionNetwork(Network<S, R> network) {
+		this.network = network;
 		deriveRates();
 		deriveKinetic();
 	}
 	
+	private Network<S, R> network;
 	private Matrix rates;
 	private Matrix kinetic;
+	
+	public Network<S, R> getNetwork() {
+		return network;
+	}
 	
 	/**
 	 * Rate constant matrix k(i, j) in M(|C| x |C|).
@@ -48,11 +43,13 @@ public class MassActionNetwork<S, R extends Number> extends Network<S, R> {
 
 	/** Derives the rate matrix k. */
 	private void deriveRates() {
-		rates = new Matrix(getComplexes().size(), getComplexes().size());
+		List<Complex<S>> complexes = getNetwork().getComplexes();
+		List<Reaction<S, R>> reactions = getNetwork().getReactions();
+		rates = new Matrix(complexes.size(), complexes.size());
 		
-		for (Reaction<S, R> reaction : getReactions()) {
-			int i = getComplexes().indexOf(reaction.getReactant());
-			int j = getComplexes().indexOf(reaction.getProduct());
+		for (Reaction<S, R> reaction : reactions) {
+			int i = complexes.indexOf(reaction.getReactant());
+			int j = complexes.indexOf(reaction.getProduct());
 			
 			rates.set(i, j, reaction.getRate().doubleValue());
 		}
@@ -60,15 +57,16 @@ public class MassActionNetwork<S, R extends Number> extends Network<S, R> {
 	
 	/** Derives the kinetic matrix A_k. Requires k (rates). */
 	private void deriveKinetic() {
-		kinetic = new Matrix(getComplexes().size(), getComplexes().size());
+		List<Complex<S>> complexes = getNetwork().getComplexes();
+		kinetic = new Matrix(complexes.size(), complexes.size());
 		
-		for (int i = 0; i < getComplexes().size(); ++i) {
-			for (int j = 0; j < getComplexes().size(); ++j) {
+		for (int i = 0; i < complexes.size(); ++i) {
+			for (int j = 0; j < complexes.size(); ++j) {
 				double value = 0;
 				
 				// Is diagonal entry?
 				if (i == j) {
-					for (int k = 0; k < getComplexes().size(); ++k) {
+					for (int k = 0; k < complexes.size(); ++k) {
 						value -= rates.get(j, k);
 					}
 				} else {

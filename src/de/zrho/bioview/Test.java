@@ -4,7 +4,6 @@ import java.io.File;
 
 import de.zrho.bioview.math.ExtremeCurrents;
 import de.zrho.bioview.math.Matrix;
-import de.zrho.bioview.model.MassActionNetwork;
 import de.zrho.bioview.model.Network;
 import de.zrho.bioview.sbml.SBMLImport;
 
@@ -19,7 +18,7 @@ public class Test {
 		
 		try {
 			File inp = new File("sampledata/example.xml");
-			network = SBMLImport.importNetwork(inp, new Network.Factory<String, Double>());
+			network = SBMLImport.importNetwork(inp);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return;

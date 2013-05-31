@@ -9,7 +9,6 @@ import java.beans.PropertyChangeListener;
 import javax.swing.AbstractListModel;
 import javax.swing.JList;
 import javax.swing.JTable;
-import javax.swing.ListModel;
 import javax.swing.event.MouseInputAdapter;
 
 public class RowHeaderList extends JList<String> {
@@ -35,8 +34,8 @@ public class RowHeaderList extends JList<String> {
 	    this.setOpaque(false);
 	    this.setFixedCellWidth(50);
 
-
-	    MouseInputAdapter mouseAdapter = new MouseInputAdapter() {
+	    @SuppressWarnings("unused")
+		MouseInputAdapter mouseAdapter = new MouseInputAdapter() {
 	        Cursor oldCursor;
 	        Cursor RESIZE_CURSOR = Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR);
 	        int index = -1;

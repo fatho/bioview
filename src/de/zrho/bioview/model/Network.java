@@ -13,16 +13,6 @@ import de.zrho.bioview.math.Matrix;
  * @see http://reaction-networks.net/wiki/Chemical_reaction_network
  */
 public class Network<S, R> {
-
-	public static class Factory<S,R> implements NetworkFactory<S, R> {
-
-		@Override
-		public Network<S, R> createNetwork(List<S> species,
-				List<Complex<S>> complexes, List<Reaction<S,R>> reactions) {
-			return new Network<S,R>(species, complexes, reactions);
-		}
-		
-	}
 	
 	private List<S> species;
 	private List<Complex<S>> complexes;

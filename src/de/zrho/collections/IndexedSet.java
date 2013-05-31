@@ -82,7 +82,7 @@ public class IndexedSet<T> implements Set<T>, List<T> {
 	}
 
 	@Override
-	public <T> T[] toArray(T[] a) {
+	public <R> R[] toArray(R[] a) {
 		return data.toArray(a);
 	}
 

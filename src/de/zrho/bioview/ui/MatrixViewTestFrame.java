@@ -2,27 +2,21 @@ package de.zrho.bioview.ui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.JTextPane;
 
 import de.zrho.bioview.math.Matrix;
 import de.zrho.bioview.ui.matrix.JMatrixView;
 import de.zrho.bioview.ui.matrix.MatrixTableModel;
-import de.zrho.bioview.ui.matrix.RowHeaderList;
-
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
 
 public class MatrixViewTestFrame extends JFrame {
 
+	private static final long serialVersionUID = -7193222361535779431L;
+	
 	private JPanel contentPane;
 	private JMatrixView matView;
 
@@ -32,14 +26,14 @@ public class MatrixViewTestFrame extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				/*try {
+				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				} catch (ClassNotFoundException | InstantiationException
 						| IllegalAccessException
 						| UnsupportedLookAndFeelException e1) {
 					System.err.println("Unable to set look and feel");
 					e1.printStackTrace();
-				}*/
+				}
 				try {
 					MatrixViewTestFrame frame = new MatrixViewTestFrame();
 					frame.setVisible(true);

@@ -1,36 +1,27 @@
 package de.zrho.bioview.sbml;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.sbml.jsbml.ListOf;
 import org.sbml.jsbml.Model;
-import org.sbml.jsbml.SBMLReader;
 import org.sbml.jsbml.Species;
 import org.sbml.jsbml.SpeciesReference;
 
 import de.zrho.bioview.model.Complex;
 import de.zrho.bioview.model.Network;
-import de.zrho.bioview.model.NetworkFactory;
 import de.zrho.bioview.model.Reaction;
 import de.zrho.collections.IndexedSet;
 
 public class SBMLImport {
 
 	public static Network<String, Double> importNetwork(File file) throws Exception {
-		return importNetwork(file, new Network.Factory<String,Double>());
-	}
-	
-	public static Network<String, Double> importNetwork(File file, NetworkFactory<String,Double> factory) throws Exception {
-		return importNetwork(new SBMLReader().readSBML(file).getModel(), factory);
+		return importNetwork(file);
 	}
 
-	public static Network<String, Double> importNetwork(Model model, NetworkFactory<String,Double> factory) {
+	public static Network<String, Double> importNetwork(Model model) {
 		// Import the list of species
 		List<String> species = new IndexedSet<>(model.getListOfSpecies().size());
 		for (Species s : model.getListOfSpecies()) species.add(importSpecies(s));
@@ -50,7 +41,7 @@ public class SBMLImport {
 			}
 		}
 		
-		return factory.createNetwork(species, complexes, reactions);
+		return new Network<String, Double>(species, complexes, reactions);
 	}
 	
 	private static Complex<String> importComplex(ListOf<SpeciesReference> source, IndexedSet<Complex<String>> target) {

@@ -3,7 +3,6 @@ package de.zrho.bioview.math;
 import java.util.logging.Level;
 
 import ch.javasoft.polco.adapter.Options;
-import ch.javasoft.polco.adapter.Options.LogFormat;
 import ch.javasoft.polco.adapter.PolcoAdapter;
 import ch.javasoft.xml.config.XmlConfigException;
 
