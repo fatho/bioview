@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.sbml.jsbml.ListOf;
 import org.sbml.jsbml.Model;
+import org.sbml.jsbml.SBMLReader;
 import org.sbml.jsbml.Species;
 import org.sbml.jsbml.SpeciesReference;
 
@@ -16,9 +17,9 @@ import de.zrho.bioview.model.Reaction;
 import de.zrho.collections.IndexedSet;
 
 public class SBMLImport {
-
+	
 	public static Network<String, Double> importNetwork(File file) throws Exception {
-		return importNetwork(file);
+		return importNetwork(new SBMLReader().readSBML(file).getModel());
 	}
 
 	public static Network<String, Double> importNetwork(Model model) {
@@ -41,7 +42,7 @@ public class SBMLImport {
 			}
 		}
 		
-		return new Network<String, Double>(species, complexes, reactions);
+		return new Network(species, complexes, reactions);
 	}
 	
 	private static Complex<String> importComplex(ListOf<SpeciesReference> source, IndexedSet<Complex<String>> target) {
