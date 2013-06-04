@@ -42,7 +42,7 @@ public class SBMLImport {
 			}
 		}
 		
-		return new Network(species, complexes, reactions);
+		return new Network<>(species, complexes, reactions);
 	}
 	
 	private static Complex<String> importComplex(ListOf<SpeciesReference> source, IndexedSet<Complex<String>> target) {
