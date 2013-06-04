@@ -4,6 +4,13 @@ import javax.swing.table.AbstractTableModel;
 
 import de.zrho.bioview.math.Matrix;
 
+/**
+ * Provides TableModel interface for matrices, in such a way as to enable them
+ * to be displayed by JTable-like components.
+ *  
+ * @author Fabian Thorand
+ *
+ */
 public class MatrixTableModel extends AbstractTableModel implements RowHeaderTableModel {
 
 	private static final long serialVersionUID = -5897374052835309276L;
@@ -11,6 +18,16 @@ public class MatrixTableModel extends AbstractTableModel implements RowHeaderTab
 	private Matrix matrix;
 	private String[] rowLabels, columnLabels;
 	
+	/**
+	 * Initializes the MatrixTableModel.
+	 * @param matrix The matrix to be displayed. This parameter must not be null.
+	 * 
+	 * @param rowLabels An optional array of row labels. If the parameter is not null, 
+	 * the array must contain exactly one element for each matrix row.
+	 * 
+	 * @param columnLabels An optional array of column headers. If the parameter is not null, 
+	 * the array must contain exactly one element for each matrix column.
+	 */
 	public MatrixTableModel(Matrix matrix, String[] rowLabels, String[] columnLabels) {
 		if(matrix == null)
 			throw new IllegalArgumentException("matrix must not be null");
@@ -53,7 +70,7 @@ public class MatrixTableModel extends AbstractTableModel implements RowHeaderTab
 	@Override
 	public String getColumnName(int column) {
 		if(columnLabels == null)
-			return "C_" + column;
+			return toSpreadSheetName(column); // provide a default naming
 		else
 			return columnLabels[column];
 	}
@@ -66,9 +83,19 @@ public class MatrixTableModel extends AbstractTableModel implements RowHeaderTab
 	@Override
 	public String getRowName(int row) {
 		if(rowLabels == null)
-			return "R_" + row;
+			return Integer.toString(row); // provide a default naming
 		else
 			return rowLabels[row];
 	}
 
+	private String toSpreadSheetName(int num) {
+		String result = "";
+		do {
+			int b = num % 26;
+			char ch = (char)(b + 65);
+			num = (num / 26) - 1;
+			result = ch + result;
+		} while(num >= 0);
+		return result;
+	}
 }

@@ -8,7 +8,19 @@ import java.util.Set;
 
 import de.zrho.bioview.math.VectorSpace;
 
-public class Complex<S> implements VectorSpace<Integer, Complex<S>> {
+/**
+ * This class represents a chemical complex that consists of 
+ * zero of more species associated with a specific coefficient
+ * representing the multiplicity of the species in the complex.
+ * 
+ * By coincidence, the set of all complexes also is a vector space
+ * over floating point numbers.
+ * 
+ * @author Lukas Heidemann
+ *
+ * @param <S> the species type
+ */
+public class Complex<S> implements VectorSpace<Double, Complex<S>> {
 
 	private Map<S, Double> coefficients;
 
@@ -49,7 +61,7 @@ public class Complex<S> implements VectorSpace<Integer, Complex<S>> {
 	}
 
 	@Override
-	public Complex<S> multScalar(Integer s) {
+	public Complex<S> multScalar(Double s) {
 		Map<S, Double> result = new HashMap<>(coefficients);
 
 		for (Entry<S, Double> entry : coefficients.entrySet()) {

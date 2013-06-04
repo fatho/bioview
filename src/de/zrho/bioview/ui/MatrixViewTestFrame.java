@@ -1,6 +1,7 @@
 package de.zrho.bioview.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,8 +11,13 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 
 import de.zrho.bioview.math.Matrix;
+import de.zrho.bioview.ui.colors.ColorMap;
+import de.zrho.bioview.ui.colors.ColorMaps;
+import de.zrho.bioview.ui.colors.ColorVector;
+import de.zrho.bioview.ui.matrix.ColoredMatrixCellRenderer;
 import de.zrho.bioview.ui.matrix.JMatrixView;
 import de.zrho.bioview.ui.matrix.MatrixTableModel;
+import de.zrho.bioview.util.NearestNeighbourInterpolator;
 
 public class MatrixViewTestFrame extends JFrame {
 
@@ -50,8 +56,20 @@ public class MatrixViewTestFrame extends JFrame {
 	public MatrixViewTestFrame() {
 		initComponents();
 		
-		MatrixTableModel model = new MatrixTableModel(Matrix.identity(30).multScalarHere(123.345), null, null);
-		matView.setModel(model);
+		MatrixTableModel model = new MatrixTableModel(randomMat(15,20), null, null);
+		matView.getTable().setModel(model);
+		matView.getTable().setDefaultRenderer(Double.class, 
+				new ColoredMatrixCellRenderer(ColorMaps.RedYellowGreen, "%.2f"));
+	}
+	
+	private Matrix randomMat(int n, int m) {
+		Matrix mat = new Matrix(n, m);
+		for(int i = 0; i < n; i++) {
+			for(int j = 0; j < m; j++) {
+				mat.set(i, j, Math.random());
+			}
+		}
+		return mat;
 	}
 	
 	private void initComponents() {

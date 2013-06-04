@@ -11,6 +11,12 @@ import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.event.MouseInputAdapter;
 
+/**
+ * A subclass of JList that adorns a JTable with row headers.
+ * 
+ * @author Fabian Thorand
+ *
+ */
 public class RowHeaderList extends JList<String> {
 	private static final long serialVersionUID = -7046274660554110934L;
 	
@@ -34,7 +40,7 @@ public class RowHeaderList extends JList<String> {
 	    this.setOpaque(false);
 	    this.setFixedCellWidth(50);
 
-	    @SuppressWarnings("unused")
+	    // TODO: Can be integrated later for row-resizing support.
 		MouseInputAdapter mouseAdapter = new MouseInputAdapter() {
 	        Cursor oldCursor;
 	        Cursor RESIZE_CURSOR = Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR);
