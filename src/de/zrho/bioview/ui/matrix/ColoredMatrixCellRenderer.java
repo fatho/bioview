@@ -6,10 +6,10 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import de.zrho.bioview.math.Interpolator;
+import de.zrho.bioview.math.LinearInterpolator;
 import de.zrho.bioview.ui.colors.ColorMap;
 import de.zrho.bioview.ui.colors.ColorVector;
-import de.zrho.bioview.util.Interpolator;
-import de.zrho.bioview.util.LinearInterpolator;
 
 public class ColoredMatrixCellRenderer extends DefaultTableCellRenderer {
 

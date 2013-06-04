@@ -11,13 +11,13 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 
 import de.zrho.bioview.math.Matrix;
+import de.zrho.bioview.math.NearestNeighbourInterpolator;
 import de.zrho.bioview.ui.colors.ColorMap;
 import de.zrho.bioview.ui.colors.ColorMaps;
 import de.zrho.bioview.ui.colors.ColorVector;
 import de.zrho.bioview.ui.matrix.ColoredMatrixCellRenderer;
 import de.zrho.bioview.ui.matrix.JMatrixView;
 import de.zrho.bioview.ui.matrix.MatrixTableModel;
-import de.zrho.bioview.util.NearestNeighbourInterpolator;
 
 public class MatrixViewTestFrame extends JFrame {
 

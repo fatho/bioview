@@ -2,7 +2,7 @@ package de.zrho.bioview.ui.colors;
 
 import java.awt.Color;
 
-import de.zrho.bioview.util.Interpolator;
+import de.zrho.bioview.math.Interpolator;
 
 /**
  * A continuous mapping between values and colors.

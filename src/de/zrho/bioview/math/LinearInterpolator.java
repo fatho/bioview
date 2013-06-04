@@ -1,6 +1,5 @@
-package de.zrho.bioview.util;
+package de.zrho.bioview.math;
 
-import de.zrho.bioview.math.VectorSpace;
 
 public class LinearInterpolator<S extends Number, V extends VectorSpace<Number, V>> implements Interpolator<S,V> {
 

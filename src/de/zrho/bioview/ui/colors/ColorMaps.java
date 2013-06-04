@@ -2,8 +2,8 @@ package de.zrho.bioview.ui.colors;
 
 import java.awt.Color;
 
-import de.zrho.bioview.util.LinearInterpolator;
-import de.zrho.bioview.util.NearestNeighbourInterpolator;
+import de.zrho.bioview.math.LinearInterpolator;
+import de.zrho.bioview.math.NearestNeighbourInterpolator;
 
 /**
  * Some predefined, nice looking color maps.
