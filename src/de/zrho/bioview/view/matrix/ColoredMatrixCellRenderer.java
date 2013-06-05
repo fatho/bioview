@@ -1,4 +1,4 @@
-package de.zrho.bioview.ui.matrix;
+package de.zrho.bioview.view.matrix;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -8,8 +8,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import de.zrho.bioview.math.Interpolator;
 import de.zrho.bioview.math.LinearInterpolator;
-import de.zrho.bioview.ui.colors.ColorMap;
-import de.zrho.bioview.ui.colors.ColorVector;
+import de.zrho.bioview.view.colors.ColorMap;
+import de.zrho.bioview.view.colors.ColorVector;
 
 public class ColoredMatrixCellRenderer extends DefaultTableCellRenderer {
 

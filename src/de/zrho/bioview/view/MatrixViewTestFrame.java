@@ -1,4 +1,4 @@
-package de.zrho.bioview.ui;
+package de.zrho.bioview.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,12 +12,12 @@ import javax.swing.border.EmptyBorder;
 
 import de.zrho.bioview.math.Matrix;
 import de.zrho.bioview.math.NearestNeighbourInterpolator;
-import de.zrho.bioview.ui.colors.ColorMap;
-import de.zrho.bioview.ui.colors.ColorMaps;
-import de.zrho.bioview.ui.colors.ColorVector;
-import de.zrho.bioview.ui.matrix.ColoredMatrixCellRenderer;
-import de.zrho.bioview.ui.matrix.JMatrixView;
-import de.zrho.bioview.ui.matrix.MatrixTableModel;
+import de.zrho.bioview.view.colors.ColorMap;
+import de.zrho.bioview.view.colors.ColorMaps;
+import de.zrho.bioview.view.colors.ColorVector;
+import de.zrho.bioview.view.matrix.ColoredMatrixCellRenderer;
+import de.zrho.bioview.view.matrix.JMatrixView;
+import de.zrho.bioview.view.matrix.MatrixTableModel;
 
 public class MatrixViewTestFrame extends JFrame {
 

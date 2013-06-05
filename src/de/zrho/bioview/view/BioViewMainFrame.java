@@ -1,4 +1,4 @@
-package de.zrho.bioview.ui;
+package de.zrho.bioview.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
+import javax.swing.Action;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -18,6 +19,7 @@ import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
 
 public class BioViewMainFrame extends JFrame {
 
@@ -28,33 +30,9 @@ public class BioViewMainFrame extends JFrame {
 	private JMenu mnfile;
 	private JMenu mnView;
 	private JMenuItem mntmOpenSbml;
-	private JSeparator menuItem;
 	private JMenuItem mntmExit;
 	private JToolBar toolBar;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-				} catch (ClassNotFoundException | InstantiationException
-						| IllegalAccessException
-						| UnsupportedLookAndFeelException e1) {
-					System.err.println("Unable to set look and feel");
-					e1.printStackTrace();
-				}
-				try {
-					BioViewMainFrame frame = new BioViewMainFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JButton btnOpen;
 
 	/**
 	 * Create the frame.
@@ -79,15 +57,9 @@ public class BioViewMainFrame extends JFrame {
 		mntmOpenSbml.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 		mnfile.add(mntmOpenSbml);
 		
-		menuItem = new JSeparator();
-		mnfile.add(menuItem);
+		mnfile.add(new JSeparator());
 		
 		mntmExit = new JMenuItem("Exit");
-		mntmExit.addActionListener(new ActionListener() {
-			public void actionPerformed(final ActionEvent e) {
-				onmntmExitActionPerformed(e);
-			}
-		});
 		mnfile.add(mntmExit);
 		
 		mnView = new JMenu("View");
@@ -99,9 +71,18 @@ public class BioViewMainFrame extends JFrame {
 		
 		toolBar = new JToolBar();
 		contentPane.add(toolBar, BorderLayout.NORTH);
+		
+		btnOpen = new JButton("Open");
+		toolBar.add(btnOpen);
 	}
-
-	protected void onmntmExitActionPerformed(final ActionEvent e) {
-		this.dispose();
+	
+	
+	public void setLoadAction(Action action) {
+		mntmOpenSbml.setAction(action);
+		btnOpen.setAction(action);
+	}
+	
+	public void setExitAction(Action action) {
+		mntmExit.setAction(action);
 	}
 }

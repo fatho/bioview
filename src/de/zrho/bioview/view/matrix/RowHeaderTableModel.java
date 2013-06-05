@@ -1,4 +1,4 @@
-package de.zrho.bioview.ui.matrix;
+package de.zrho.bioview.view.matrix;
 
 import javax.swing.table.TableModel;
 

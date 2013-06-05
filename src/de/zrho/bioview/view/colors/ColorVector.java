@@ -1,4 +1,4 @@
-package de.zrho.bioview.ui.colors;
+package de.zrho.bioview.view.colors;
 
 import java.awt.Color;
 

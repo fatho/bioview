@@ -1,9 +1,12 @@
 package de.zrho.bioview.sbml;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.stream.XMLStreamException;
 
 import org.sbml.jsbml.ListOf;
 import org.sbml.jsbml.Model;
@@ -18,7 +21,7 @@ import de.zrho.collections.IndexedSet;
 
 public class SBMLImport {
 	
-	public static Network<String, Double> importNetwork(File file) throws Exception {
+	public static Network<String, Double> importNetwork(File file) throws XMLStreamException, IOException {
 		return importNetwork(new SBMLReader().readSBML(file).getModel());
 	}
 
