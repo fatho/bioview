@@ -8,22 +8,23 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import de.zrho.bioview.math.Interpolator;
 import de.zrho.bioview.math.LinearInterpolator;
-import de.zrho.bioview.view.colors.ColorMap;
+import de.zrho.bioview.view.colors.DiscreteInterpolatedColorMap;
 import de.zrho.bioview.view.colors.ColorVector;
+import de.zrho.bioview.view.colors.ImmutableColorMap;
 
 public class ColoredMatrixCellRenderer extends DefaultTableCellRenderer {
 
 	private static final long serialVersionUID = 5534866495705995402L;
 	
-	private ColorMap colorMap;
+	private ImmutableColorMap colorMap;
 	private String cellFormat;
 	private Interpolator<Number, ColorVector> linear;
 
-	public ColoredMatrixCellRenderer(ColorMap colorMap) {
+	public ColoredMatrixCellRenderer(ImmutableColorMap colorMap) {
 		this(colorMap, "%f");
 	}
 	
-	public ColoredMatrixCellRenderer(ColorMap colorMap, String cellFormat) {
+	public ColoredMatrixCellRenderer(ImmutableColorMap colorMap, String cellFormat) {
 		this.colorMap = colorMap;
 		this.linear = new LinearInterpolator<>();
 		this.cellFormat = cellFormat;

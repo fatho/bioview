@@ -2,6 +2,7 @@ package de.zrho.bioview.view.matrix;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.JLabel;
@@ -42,6 +43,11 @@ class RowHeaderRenderer extends JLabel implements ListCellRenderer<String> {
         setText((value == null) ? "" : value);
         setPreferredSize(null);
         setPreferredSize(new Dimension((int) getPreferredSize().getWidth(), table.getRowHeight(index)));
+        if(table.isRowSelected(index)) {
+        	setFont(getFont().deriveFont(Font.BOLD));
+        } else {
+        	setFont(getFont().deriveFont(Font.PLAIN));
+        }
         //trick to force repaint on JList (set updateLayoutStateNeeded = true) on BasicListUI
         list.firePropertyChange("cellRenderer", 0, 1);
         return this;

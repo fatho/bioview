@@ -49,12 +49,12 @@ public class Matrix implements MVectorSpace<Double, Matrix> {
 		if (m.getHeight() != width)
 			throw new IllegalArgumentException("Dimension mismatch multiplying matrices.");
 		
-		Matrix result = new Matrix(m.getWidth(), height);
+		Matrix result = new Matrix(height, m.getWidth());
 		
 		for (int i = 0; i < result.getHeight(); ++i) {
 			for (int j = 0; j < result.getWidth(); ++j) {
-				for (int k = 0; k < width; ++i) {
-					result.getData()[i][j] = data[i][k] * m.getData()[k][j];
+				for (int k = 0; k < width; ++k) {
+					result.data[i][j] += data[i][k] * m.data[k][j];
 				}
 			}
 		}
@@ -109,6 +109,17 @@ public class Matrix implements MVectorSpace<Double, Matrix> {
 		Matrix result = clone();
 		result.multScalar(s);
 		return result;
+	}
+	
+	public Matrix transpose() {
+		// TODO: O(nm) time and O(nm) space complexity 
+		Matrix transposed = new Matrix(width, height);
+		for(int i = 0; i < height; i++) {
+			for(int j = 0; j < width; j++) {
+				transposed.set(j, i, get(i,j));
+			}
+		}
+		return transposed;
 	}
 	
 	@Override
@@ -184,5 +195,31 @@ public class Matrix implements MVectorSpace<Double, Matrix> {
 			mat.set(i, i, 1);
 		}
 		return mat;
+	}
+	
+	/**
+	 * @return the largest element in this matrix.
+	 */
+	public double max() {
+		double max = Double.NEGATIVE_INFINITY;
+		for(int i = 0; i < height; i++) {
+			for(int j = 0; j < width; j++) {
+				max = Math.max(data[i][j], max);
+			}
+		}
+		return max;
+	}
+	
+	/**
+	 * @return the smallest element in this matrix.
+	 */
+	public double min() {
+		double max = Double.POSITIVE_INFINITY;
+		for(int i = 0; i < height; i++) {
+			for(int j = 0; j < width; j++) {
+				max = Math.min(data[i][j], max);
+			}
+		}
+		return max;
 	}
 }

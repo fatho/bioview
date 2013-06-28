@@ -37,11 +37,12 @@ public class SBMLImport {
 		for (org.sbml.jsbml.Reaction sourceReaction : model.getListOfReactions()) {
 			Complex<String> reactants = importComplex(sourceReaction.getListOfReactants(), complexes);
 			Complex<String> products = importComplex(sourceReaction.getListOfProducts(), complexes);
-
+			
 			// TODO Find rates
-			reactions.add(new Reaction<String, Double>(reactants, products, 1.0));
+			String id = sourceReaction.getId();
+			reactions.add(new Reaction<String, Double>(reactants, products, 1.0, id));
 			if(sourceReaction.isReversible()) {
-				reactions.add(new Reaction<String, Double>(products, reactants, 1.0));
+				reactions.add(new Reaction<String, Double>(products, reactants, 1.0, id + " (Rev.)"));
 			}
 		}
 		

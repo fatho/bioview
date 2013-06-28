@@ -14,8 +14,9 @@ public class Reaction<S, R> {
 	private Complex<S> product;
 	private Complex<S> reactant;
 	private R rate;
+	private String name;
 
-	public Reaction(Complex<S> reactant, Complex<S> product, R rate) {
+	public Reaction(Complex<S> reactant, Complex<S> product, R rate, String name) {
 		if (reactant == null)
 			throw new IllegalArgumentException("reactant must not be null");
 		if (product == null)
@@ -26,6 +27,7 @@ public class Reaction<S, R> {
 		this.product = product;
 		this.reactant = reactant;
 		this.rate = rate;
+		this.name = name;
 	}
 
 	public Complex<S> getProduct() {
@@ -38,6 +40,10 @@ public class Reaction<S, R> {
 
 	public R getRate() {
 		return rate;
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 	@Override

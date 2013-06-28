@@ -20,6 +20,15 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import javax.swing.JTabbedPane;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
 
 public class BioViewMainFrame extends JFrame {
 
@@ -33,6 +42,7 @@ public class BioViewMainFrame extends JFrame {
 	private JMenuItem mntmExit;
 	private JToolBar toolBar;
 	private JButton btnOpen;
+	private JTabbedPane tabbedPane;
 
 	/**
 	 * Create the frame.
@@ -74,6 +84,9 @@ public class BioViewMainFrame extends JFrame {
 		
 		btnOpen = new JButton("Open");
 		toolBar.add(btnOpen);
+		
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}
 	
 	

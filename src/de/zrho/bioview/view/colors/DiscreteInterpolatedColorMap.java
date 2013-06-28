@@ -10,12 +10,46 @@ import de.zrho.bioview.math.Interpolator;
  * @author Fabian Thorand
  *
  */
-public class ColorMap {
+public class DiscreteInterpolatedColorMap implements MutableColorMap {
 
 	protected double[] values;
 	protected Color [] colors; 
 	
 	protected Interpolator<Double, ColorVector> interpolator;
+	
+	private static class ImmutableWrap implements ImmutableColorMap {
+		ImmutableColorMap inner;
+		
+		public ImmutableWrap(ImmutableColorMap inner) {
+			this.inner = inner;
+		}
+		
+		@Override
+		public Color getColor(double value) {
+			return inner.getColor(value);
+		}
+
+		@Override
+		public ImmutableColorMap scale(double scale) {
+			return inner.scale(scale);
+		}
+
+		@Override
+		public ImmutableColorMap translate(double translate) {
+			return inner.translate(translate);
+		}
+
+		@Override
+		public ImmutableColorMap reverse() {
+			return inner.reverse();
+		}
+
+		@Override
+		public MutableColorMap mutableClone() {
+			return inner.mutableClone();
+		}
+		
+	}
 	
 	/**
 	 * Initializes the color map. This class will copy the given arrays.
@@ -24,7 +58,7 @@ public class ColorMap {
 	 * @param colors
 	 * @param interpolator
 	 */
-	public ColorMap(double[] values, Color[] colors, Interpolator<Double, ColorVector> interpolator) {
+	public DiscreteInterpolatedColorMap(double[] values, Color[] colors, Interpolator<Double, ColorVector> interpolator) {
 		if(values == null || colors == null || interpolator == null)
 			throw new IllegalArgumentException("Arguments must not be null");
 		if(values.length != colors.length) 
@@ -38,58 +72,65 @@ public class ColorMap {
 	 * Translates the value scale by the given amount.
 	 * @param offset the offset that should be added to every entry in the color map.
 	 */
-	protected void translateHere(double offset) {
+	public MutableColorMap translateHere(double offset) {
 		for(int i = 0; i < values.length; i++) {
 			values[i] += offset;
 		}
+		return this;
 	}
 
 	/**
 	 * Scales the value scale by the given amount.
 	 * @param offset the offset that should be added to every entry in the color map.
 	 */
-	protected void scaleHere(double scale) {
+	public MutableColorMap scaleHere(double scale) {
 		for(int i = 0; i < values.length; i++) {
 			values[i] *= scale;
 		}
+		return this;
 	}
 	
 	/**
 	 * Reverses the list of colors.
 	 */
-	protected void reverseHere() {
+	public MutableColorMap reverseHere() {
 		for(int i = 0; i < values.length / 2; i++) {
 			double tmp = values[i];
 			values[i] = values[values.length - i - 1];
 			values[values.length - i - 1] = tmp;
 		}
+		return this;
 	}
 	
-	/**
-	 * Transforms a color map by translating it first and then applying the scale.
-	 * @param translate the translate transform
-	 * @param scale the scale transform
-	 * @param reverse if true, the colors will be reversed.
-	 * @return
-	 */
-	public ColorMap transform(double translate, double scale, boolean reverse) {
-		ColorMap cpy = clone();
-		cpy.translateHere(translate);
-		cpy.scaleHere(scale);
-		if(reverse)
-			cpy.reverseHere();
-		return cpy;
+	public ImmutableColorMap scale(double scale) {
+		return new ImmutableWrap(mutableClone().scaleHere(scale));
 	}
-	
-	public ColorMap transform(double translate, double scale) {
-		return transform(translate, scale, false);
+
+	@Override
+	public ImmutableColorMap translate(double translate) {;
+		return new ImmutableWrap(mutableClone().translateHere(translate));
+	}
+
+	@Override
+	public ImmutableColorMap reverse() {
+		return new ImmutableWrap(mutableClone().reverseHere());
+	}
+
+	@Override
+	public MutableColorMap mutableClone() {
+		return clone();
 	}
 	
 	/**
 	 * Creates a new color map with a copy of the underlying arrays
 	 */
-	public ColorMap clone() {
-		return new ColorMap(values, colors, interpolator);
+	public DiscreteInterpolatedColorMap clone() {
+		return new DiscreteInterpolatedColorMap(values, colors, interpolator);
+	}
+
+	@Override
+	public ImmutableColorMap immutableClone() {
+		return new ImmutableWrap(clone());
 	}
 	
 	/**

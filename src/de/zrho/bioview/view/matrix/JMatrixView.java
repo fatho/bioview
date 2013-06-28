@@ -3,12 +3,16 @@ package de.zrho.bioview.view.matrix;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
@@ -48,11 +52,23 @@ public class JMatrixView extends JComponent {
 				rowHeaders.setFont(getFont());
 			}
 		});
+		ListSelectionListener headerRedrawListener = new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if(!e.getValueIsAdjusting()) {
+					table.getTableHeader().repaint();
+				}
+			}
+		};
+		table.getColumnModel().getSelectionModel().addListSelectionListener(headerRedrawListener);
+		table.getSelectionModel().addListSelectionListener(headerRedrawListener);
 		
 		table.getTableHeader().setReorderingAllowed(false);
 		table.getTableHeader().setResizingAllowed(false);
 		table.setCellSelectionEnabled(true);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.getTableHeader().setDefaultRenderer(new ColumnHeaderRenderer());
 		
 		this.setFont(new Font(Font.MONOSPACED, Font.PLAIN, table.getFont()
 				.getSize()));
