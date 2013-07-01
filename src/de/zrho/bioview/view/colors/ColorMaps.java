@@ -25,7 +25,12 @@ public final class ColorMaps {
 	 */
 	public static final ImmutableColorMap RedYellowGreen = uniformLinearMap(0,
 			1, Color.red, Color.yellow, Color.green).immutableClone();
-
+	
+	public static MutableColorMap linearMap(double[] values, Color[] colors) {
+		return new DiscreteInterpolatedColorMap(values, colors,
+				new LinearInterpolator<Double, ColorVector>());
+	}
+	
 	public static MutableColorMap uniformLinearMap(double low, double high,
 			Color... colors) {
 		if (colors.length == 0)

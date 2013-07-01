@@ -1,11 +1,16 @@
 package de.zrho.bioview.view;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.EventObject;
+import java.util.List;
 
 import javax.swing.Action;
 import javax.swing.JFrame;
@@ -30,19 +35,28 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 
-public class BioViewMainFrame extends JFrame {
+import org.sbml.jsbml.Reaction;
+
+import de.zrho.bioview.controller.Controller;
+import de.zrho.bioview.controller.ControllerListener;
+
+public class BioViewMainFrame extends JFrame implements ControllerListener {
 
 	private static final long serialVersionUID = -4548800584629649126L;
+	
+	private Controller controller;
+	
+	private List<VisualizationPanel> panels;
 	
 	private JPanel contentPane;
 	private JMenuBar menuBar;
 	private JMenu mnfile;
 	private JMenu mnView;
-	private JMenuItem mntmOpenSbml;
-	private JMenuItem mntmExit;
 	private JToolBar toolBar;
-	private JButton btnOpen;
 	private JTabbedPane tabbedPane;
+	private ComplexPane complexPane;
+	private ReactionPane reactionPane;
+	private GraphPane graphPane;
 
 	/**
 	 * Create the frame.
@@ -50,6 +64,7 @@ public class BioViewMainFrame extends JFrame {
 	public BioViewMainFrame() {
 		initComponents();
 	}
+	
 	private void initComponents() {
 		setTitle("BioView");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,15 +78,6 @@ public class BioViewMainFrame extends JFrame {
 		mnfile.setActionCommand("File");
 		menuBar.add(mnfile);
 		
-		mntmOpenSbml = new JMenuItem("Open SBML");
-		mntmOpenSbml.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
-		mnfile.add(mntmOpenSbml);
-		
-		mnfile.add(new JSeparator());
-		
-		mntmExit = new JMenuItem("Exit");
-		mnfile.add(mntmExit);
-		
 		mnView = new JMenu("View");
 		menuBar.add(mnView);
 		contentPane = new JPanel();
@@ -82,20 +88,58 @@ public class BioViewMainFrame extends JFrame {
 		toolBar = new JToolBar();
 		contentPane.add(toolBar, BorderLayout.NORTH);
 		
-		btnOpen = new JButton("Open");
-		toolBar.add(btnOpen);
-		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
+		
+		complexPane = new ComplexPane();
+		tabbedPane.add("Complexes", complexPane);
+		
+		reactionPane = new ReactionPane();
+		tabbedPane.add("Reactions", reactionPane);
+		
+		graphPane = new GraphPane();
+		tabbedPane.add("Network Graph", graphPane);
 	}
 	
 	
-	public void setLoadAction(Action action) {
-		mntmOpenSbml.setAction(action);
-		btnOpen.setAction(action);
+	public void connectController(Controller controller) {
+		this.controller = controller;
+		
+		controller.addListener(this);
+		
+		// build file menu
+		mnfile.add(controller.loadFileAction);
+		mnfile.addSeparator();
+		mnfile.add(controller.exitFileAction);
+		
+		// build view menu
+		mnView.add(controller.showStoichiometricMatrixAction);
+		mnView.add(controller.showKineticMatrixAction);
+
+		// build toolbar
+		toolBar.add(controller.loadFileAction);
+		toolBar.addSeparator();
+		toolBar.add(controller.showStoichiometricMatrixAction);
+		toolBar.add(controller.showKineticMatrixAction);
+		
+		// initialize tabs
+		for(Component com : tabbedPane.getComponents()) {
+			if(com instanceof VisualizationPanel) {
+				((VisualizationPanel)com).connectController(controller);
+			}
+		}
+		tabbedPane.setEnabled(false);
 	}
-	
-	public void setExitAction(Action action) {
-		mntmExit.setAction(action);
+
+	@Override
+	public void modelChanged(EventObject event) {
+		File curFile = controller.getCurrentFile();
+		if(curFile == null) {
+			setTitle("BioView");
+			tabbedPane.setEnabled(false);
+		} else {
+			setTitle(String.format("BioView (%s)", curFile.getAbsolutePath()));
+			tabbedPane.setEnabled(true);
+		}
 	}
 }

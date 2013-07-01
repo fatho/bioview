@@ -27,4 +27,8 @@ public abstract class EasyInitAction extends AbstractAction {
 		putValue(key, newValue);
 		return this;
 	}
+	public EasyInitAction initiallyDisabled() {
+		setEnabled(false);
+		return this;
+	}
 }

@@ -77,7 +77,13 @@ public class Complex<S> implements VectorSpace<Double, Complex<S>> {
 		int i = 0;
 
 		for (Entry<S, Double> e : coefficients.entrySet()) {
-			b.append(e.getValue());
+			double val = (double)e.getValue();
+			if(Math.round(val) == val) {
+				b.append(e.getValue().longValue());
+			} else {
+				b.append(e.getValue());
+			}
+			b.append(' ');
 			b.append(e.getKey());
 
 			// Not last?
