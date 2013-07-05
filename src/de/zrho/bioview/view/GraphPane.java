@@ -102,7 +102,6 @@ public class GraphPane extends JPanel implements VisualizationPanel {
 		@SuppressWarnings("unchecked")
 		@Override
 		public void itemStateChanged(ItemEvent e) {
-			System.out.println("Foo" + e.getItem().toString());
 			controller.focusReaction((Reaction<String, Double>) e.getItem());
 		}
 		

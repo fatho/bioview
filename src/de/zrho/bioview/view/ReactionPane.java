@@ -54,9 +54,9 @@ public class ReactionPane extends JPanel implements VisualizationPanel {
 	public ReactionPane() {
 
 		initComponents();
-		
 		reactionTable.setDefaultRenderer(Object.class, new ExtremeCurrentTableRenderer());
 	}
+	
 	private void initComponents() {
 		setLayout(new BorderLayout(0, 0));
 		
