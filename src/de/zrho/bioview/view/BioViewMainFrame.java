@@ -142,4 +142,21 @@ public class BioViewMainFrame extends JFrame implements ControllerListener {
 			tabbedPane.setEnabled(true);
 		}
 	}
+	
+	public ComplexPane getComplexPane() {
+		return complexPane;
+	}
+	
+	public GraphPane getGraphPane() {
+		return graphPane;
+	}
+	
+	public ReactionPane getReactionPane() {
+		return reactionPane;
+	}
+	
+	public void switchToReactionPane() {
+		tabbedPane.setSelectedIndex(1);
+	}
+	
 }

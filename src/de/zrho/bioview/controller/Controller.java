@@ -1,23 +1,19 @@
 package de.zrho.bioview.controller;
 
 import java.awt.Color;
-import java.awt.Event;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.beans.PropertyChangeEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.EventObject;
 import java.util.prefs.Preferences;
 
-import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -26,6 +22,7 @@ import javax.xml.stream.XMLStreamException;
 
 import de.zrho.bioview.math.Matrix;
 import de.zrho.bioview.model.Network;
+import de.zrho.bioview.model.Reaction;
 import de.zrho.bioview.sbml.SBMLImport;
 import de.zrho.bioview.view.BioViewMainFrame;
 import de.zrho.bioview.view.MatrixFrame;
@@ -183,10 +180,19 @@ public class Controller {
 			
 			ImmutableColorMap cmap = ColorMaps.uniformLinearMap(0, st.max(), Color.white, Color.green);
 			kineticFrame.setColorMap(cmap);
-			kineticFrame.setTitle("Stoichiometric Matrix of " + currentFile.getName());
+			kineticFrame.setTitle("Kinetic (Reactant) Matrix of " + currentFile.getName());
 		}
 		
 		kineticFrame.setVisible(true);
+	}
+	
+	/**
+	 * Switches the to reaction pane and focuses the reaction.
+	 * @param reaction
+	 */
+	public void focusReaction(Reaction<String, Double> reaction) {
+		mainFrame.switchToReactionPane();
+		mainFrame.getReactionPane().focusReaction(reaction);
 	}
 	
 	/**

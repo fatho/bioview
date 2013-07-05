@@ -163,6 +163,19 @@ public class ReactionPane extends JPanel implements VisualizationPanel {
 			}
 		}
 	}
+	
+	public void focusReaction(Reaction<String, Double> reaction) {
+		int i = 0;
+		for (Reaction<String, Double> r : controller.getNetwork().getReactions()) {
+			if (r.equals(reaction)) {
+				reactionTable.setColumnSelectionInterval(0, 2);
+				reactionTable.setRowSelectionInterval(i, i);
+				reactionTable.scrollRectToVisible(reactionTable.getCellRect(i, 0, true));
+				break;
+			} else ++i;
+		}
+	}
+	
 	protected void onextremeCurrentListValueChanged(final ListSelectionEvent e) {
 		reactionTable.repaint();
 	}
